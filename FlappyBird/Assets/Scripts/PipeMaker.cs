@@ -14,7 +14,7 @@ public class PipeMaker : MonoBehaviour {
     void OnGUI() {
         GUI.color = Color.black;
         GUILayout.Label ("Score: " + score.ToString());
-        Debug.Log ("Score: " + score);
+        //Debug.Log ("Score: " + score);
     }
 
 	// Update is called once per frame

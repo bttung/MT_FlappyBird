@@ -12,6 +12,15 @@ public class Bird : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (!GameManager.gameStart) {
+            rigidbody2D.gravityScale = 0f;
+            //Debug.Log ("Bird has no gravity");
+        } else {
+            rigidbody2D.gravityScale = 0.5f;
+            //Debug.Log ("Bird is going to fall");
+        }
+
+
 	    // Jump
         if (Input.GetKeyUp (KeyCode.Space)) {
             rigidbody2D.velocity = Vector2.zero;

@@ -8,14 +8,16 @@ public class Move : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        rigidbody2D.velocity = velocity;
-        transform.position = new Vector3 (transform.position.x, 
-                                          transform.position.y - range * Random.value, 
-                                          transform.position.z);
+//        rigidbody2D.velocity = velocity;
+//        transform.position = new Vector3 (transform.position.x, 
+//                                          transform.position.y - range * Random.value, 
+//                                          transform.position.z);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    if (GameManager.gameStart && !GameManager.gameOver) {
+            transform.Translate(-Time.deltaTime * 2.0f, 0, 0);
+        }
 	}
 }
