@@ -16,7 +16,7 @@ public class TapToStart : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!GameManager.gameStart) {
+        if (GameManager.gameStart) {
             tap.gameObject.renderer.enabled = false;
             ready.gameObject.renderer.enabled = false;
         }

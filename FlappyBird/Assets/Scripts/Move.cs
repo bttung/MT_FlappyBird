@@ -16,6 +16,9 @@ public class Move : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (!GameManager.gameStart) {
+            return;
+        }
 	    if (GameManager.gameStart && !GameManager.gameOver) {
             transform.Translate(-Time.deltaTime * 2.0f, 0, 0);
         }

@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour {
     void Update() {
         if (!gameStart) {
             if (Input.GetMouseButtonDown(0)) {
-                Debug.Log ("Start Game now...");
                 gameStart = true;
             }
         }

@@ -3,27 +3,41 @@ using System.Collections;
 
 public class PipeMaker : MonoBehaviour {
 
+    public bool up = false;
+    public bool down = true;
+
     public GameObject pipes;
-    private int score = 0;
+    //private int score = 0;
+    public float delayTime = 1.5f;
+    private float respawnTimer;
 
 	// Use this for initialization
 	void Start () {
-        InvokeRepeating ("CreatePipe", 1f, 1.5f);
+        respawnTimer = 1;
+        //InvokeRepeating ("CreatePipe", 1f, 1.5f);
 	}
-	
-    void OnGUI() {
-        GUI.color = Color.black;
-        GUILayout.Label ("Score: " + score.ToString());
-        //Debug.Log ("Score: " + score);
-    }
 
 	// Update is called once per frame
 	void Update () {
-	
+	    if (GameManager.gameStart && !GameManager.gameOver) {
+            if (up) {
+                respawnTimer += Time.deltaTime;
+                if (respawnTimer > delayTime) {
+                    var tolerance = Random.Range(0f, 3f);
+                    Vector3 pos = new Vector3(transform.position.x, transform.position.y + tolerance, transform.position.z);
+                    var newObj = Instantiate(pipes, pos, transform.rotation);
+                    respawnTimer = 0.0f;
+                }
+            }
+            if (down) {
+                respawnTimer += Time.deltaTime;
+                if (respawnTimer > delayTime) {
+                    var tolerance = Random.Range(0f, 3f);
+                    Vector3 pos = new Vector3(transform.position.x, transform.position.y + tolerance, transform.position.z);
+                    var newObj = Instantiate(pipes, pos, transform.rotation);
+                    respawnTimer = 0.0f;
+                }
+            }
+        }
 	}
-
-    void CreatePipe() {
-        Instantiate (pipes);
-        score++;
-    }
 }
