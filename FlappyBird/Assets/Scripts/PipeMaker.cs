@@ -7,14 +7,12 @@ public class PipeMaker : MonoBehaviour {
     public bool down = true;
 
     public GameObject pipes;
-    //private int score = 0;
     public float delayTime = 1.5f;
     private float respawnTimer;
 
 	// Use this for initialization
 	void Start () {
         respawnTimer = 1;
-        //InvokeRepeating ("CreatePipe", 1f, 1.5f);
 	}
 
 	// Update is called once per frame
