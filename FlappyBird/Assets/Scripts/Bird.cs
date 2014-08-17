@@ -23,8 +23,8 @@ public class Bird : MonoBehaviour {
             rigidbody2D.gravityScale = 0.5f;
         }
 
-        var pos = new Vector3 (birdPos.x,transform.position.y, transform.position.z);
-        transform.position = pos;
+//        var pos = new Vector3 (birdPos.x,transform.position.y, transform.position.z);
+//        transform.position = pos;
 
         if ((Input.GetKeyDown (KeyCode.Space)||Input.GetMouseButtonDown(0)) &&
             !GameManager.gameOver&&GameManager.gameStart) {
@@ -36,13 +36,19 @@ public class Bird : MonoBehaviour {
             transform.position = temp;
         }
 
+        // Limit the velocity of fall down
+        if (rigidbody2D.velocity.y < downVel) {
+            Vector3 tempVel = new Vector3 (0f, downVel, 0f);
+            rigidbody2D.velocity = tempVel;
+        }
+
     }
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "ScoreArea") {
             GameManager.score++;
             Destroy (other.gameObject);
-        } else if (other.gameObject.tag == "Pipe") {
+        } else if (other.gameObject.tag == "Pipe" || other.gameObject.tag == "Ground") {
             gameObject.collider2D.isTrigger = false;
             AudioSource.PlayClipAtPoint(hit, Camera.main.transform.position);
             if (GameManager.score > PlayerPrefs.GetInt("highScore")) {

@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GroundMaker.cs" />
      <Compile Include="Assets\Scripts\Move.cs" />
+     <Compile Include="Assets\Scripts\NumberTexture.cs" />
      <Compile Include="Assets\Scripts\PipeMaker.cs" />
      <Compile Include="Assets\Scripts\TapToStart.cs" />
   </ItemGroup>

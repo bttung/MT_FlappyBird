@@ -8,6 +8,12 @@ public class GUIManager : MonoBehaviour {
     public Texture2D goldGray;
     public Texture2D goldGold;
     public Texture2D play;
+    public GameObject numbTxt;
+    public NumberTexture texture;
+
+    void Start() {
+        numbTxt = GameObject.Find ("Numbers");
+    }
 
     void OnGUI() {
         var windowWidth = Screen.width / 1.2f;
@@ -15,14 +21,20 @@ public class GUIManager : MonoBehaviour {
         var windowX = (Screen.width - windowWidth) / 2f;
         var windowY = (Screen.height - windowHeight) / 2.1f;
 
-        if (GameManager.gameStart) {
-            GUI.Label (new Rect(Screen.width / 3f, Screen.height / 6f, 100, 20), GameManager.score.ToString());
+        if (GameManager.gameStart && !GameManager.gameOver) {
+            GUI.Label (new Rect(Screen.width / 2f, Screen.height / 4f, 100, 20), GameManager.score.ToString());
         }
 
         if (GameManager.gameOver) {
             GUI.DrawTexture(new Rect(windowX + 200, windowY / 2f, windowWidth / 3f, windowHeight / 3f), gameOver);
             GUI.DrawTexture(new Rect(windowX + 200, windowY / 2f + 100f, windowWidth / 3f, windowHeight / 3f), scoreBoard);
-            GUI.Label (new Rect(windowX + 350, windowY / 2f + 70f, windowWidth / 3f, windowHeight / 3f), "Score: " + GameManager.score.ToString());
+            //GUI.Label (new Rect(windowX + 350, windowY / 2f + 70f, windowWidth / 3f, windowHeight / 3f), "Score: " + GameManager.score.ToString());
+            //NumberTexture.DrawNumber(GameManager.score);
+            string scoreStr = GameManager.score.ToString();
+            for (int i = 0; i < scoreStr.Length; i++) {
+                GUI.DrawTexture(new Rect(windowX + 200 + i * 10, windowY / 2f + 100f, windowWidth / 3f, windowHeight / 3f), texture.lSize[(int) scoreStr[i]]);
+            }
+
             Debug.Log("...GameOver");
             GUI.Label (new Rect(windowX + 350, windowY / 2f + 100f, windowWidth / 3f, windowHeight / 3f), "HighScore: " + PlayerPrefs.GetInt("highScore").ToString());
             Debug.Log("Drew High Score" + PlayerPrefs.GetInt("highScore"));

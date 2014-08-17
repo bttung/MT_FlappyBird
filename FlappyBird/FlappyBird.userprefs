@@ -1,14 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Bird.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GUIManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Bird.cs" Line="43" Column="37" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="23" Column="47" />
-      <File FileName="Assets/Scripts/Move.cs" Line="10" Column="17" />
-      <File FileName="Assets/Scripts/PipeMaker.cs" Line="18" Column="3" />
-      <File FileName="Assets/Scripts/TapToStart.cs" Line="19" Column="13" />
-      <File FileName="Assets/Scripts/GroundMaker.cs" Line="7" Column="34" />
-      <File FileName="Assets/Scripts/Destroyer.cs" Line="17" Column="9" />
+      <File FileName="Assets/Scripts/Bird.cs" Line="59" Column="10" />
+      <File FileName="Assets/Scripts/GUIManager.cs" Line="20" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
