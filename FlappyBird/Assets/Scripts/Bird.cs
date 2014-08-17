@@ -7,12 +7,14 @@ public class Bird : MonoBehaviour {
     private float some = 5f;
     private float downVel = -7.2f;
     private Vector3 birdPos;
+    private Vector3 tmpPos;
     public AudioClip hit;
     
     // Use this for initialization
     void Start () {
         rotz = 0;
         birdPos = transform.position;
+        tmpPos = new Vector3(transform.position.x, 0.0f,transform.position.z);
     }
     
     // Update is called once per frame
@@ -27,13 +29,12 @@ public class Bird : MonoBehaviour {
 //        transform.position = pos;
 
         if ((Input.GetKeyDown (KeyCode.Space)||Input.GetMouseButtonDown(0)) &&
-            !GameManager.gameOver&&GameManager.gameStart) {
+                                            !GameManager.gameOver&&GameManager.gameStart) {
             rigidbody2D.velocity = new Vector2 (0f, upForce);
         }
 
         if (!GameManager.gameStart || GameManager.gameOver) {
-            Vector3 temp = new Vector3(transform.position.x, 1.0f,transform.position.z);
-            transform.position = temp;
+            transform.position = tmpPos;
         }
 
         // Limit the velocity of fall down

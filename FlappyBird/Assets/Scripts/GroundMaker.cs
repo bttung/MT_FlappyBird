@@ -14,7 +14,7 @@ public class GroundMaker : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	    if (GameManager.gameStart && !GameManager.gameOver) {
+	    if (!GameManager.gameOver) {
             respawnTimer += Time.deltaTime;
             if (respawnTimer > delayTime) {
                 Instantiate(grouds, transform.position, transform.rotation);
