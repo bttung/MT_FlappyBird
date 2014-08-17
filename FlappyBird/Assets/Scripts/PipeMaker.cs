@@ -23,7 +23,7 @@ public class PipeMaker : MonoBehaviour {
                 if (respawnTimer > delayTime) {
                     var tolerance = Random.Range(0f, 3f);
                     Vector3 pos = new Vector3(transform.position.x, transform.position.y + tolerance, transform.position.z);
-                    var newObj = Instantiate(pipes, pos, transform.rotation);
+                    Instantiate(pipes, pos, transform.rotation);
                     respawnTimer = 0.0f;
                 }
             }
@@ -32,7 +32,7 @@ public class PipeMaker : MonoBehaviour {
                 if (respawnTimer > delayTime) {
                     var tolerance = Random.Range(0f, 3f);
                     Vector3 pos = new Vector3(transform.position.x, transform.position.y + tolerance, transform.position.z);
-                    var newObj = Instantiate(pipes, pos, transform.rotation);
+                    Instantiate(pipes, pos, transform.rotation);
                     respawnTimer = 0.0f;
                 }
             }
