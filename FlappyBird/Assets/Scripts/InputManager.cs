@@ -16,7 +16,9 @@ public class InputManager : MonoBehaviour {
     }
     
     public static bool isInputed() {
-        if (Input.GetKeyDown (KeyCode.Space) || Input.GetMouseButtonDown(0)) {
+        if (Input.GetKeyDown (KeyCode.Space) 
+            || Input.GetMouseButtonDown(0)
+            || Input.touchCount > 0) {
             return true;
         }
         return false;

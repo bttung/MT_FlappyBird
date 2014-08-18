@@ -14,6 +14,7 @@ public class GUIManager : MonoBehaviour {
     public NumberTexture numberTxt;
     public Texture2D tmpTexture;
     private float scale;
+    private float numberScale;
 
     private GameObject medalManager;
     private MedalManager medalComp;
@@ -22,7 +23,8 @@ public class GUIManager : MonoBehaviour {
     void Start() {
         numberDrawer = GameObject.Find ("Numbers");
         numberTxt = numberDrawer.GetComponent<NumberTexture> ();
-        scale = 0.75f;
+        scale = 2.0f;
+        numberScale = 4.0f;
 
         medalManager = GameObject.Find ("Medal");
         medalComp = medalManager.GetComponent<MedalManager> ();
@@ -30,23 +32,26 @@ public class GUIManager : MonoBehaviour {
     
     void OnGUI() {
         if (GameManager.gameStart && !GameManager.gameOver) {
-            numberTxt.DrawNumber(GameManager.score, new Vector2(Screen.width / 2 - 10, Screen.height / 2 - 150), "Big");
+            numberTxt.DrawNumber(GameManager.score, new Vector2(Screen.width / 2 - 20, Screen.height / 2 - 300), "Big", numberScale);
         }
 
         if (GameManager.gameOver) {
             // Draw Game Result Box
-            DrawTexture(new Vector2(Screen.width / 2 - gameOver.width * scale / 2, Screen.height / 2 - 100), gameOver, scale);
+            DrawTexture(new Vector2(Screen.width / 2 - gameOver.width * scale / 2, Screen.height / 2 - 200), gameOver, scale);
             DrawTexture(new Vector2(Screen.width / 2 - scoreBoard.width * scale / 2, Screen.height / 2 - 50), scoreBoard, scale);
 
             // Draw Score
-            numberTxt.DrawNumber(GameManager.score, new Vector2(Screen.width / 2 + 48, Screen.height / 2 - 20), "Medium");
-            numberTxt.DrawNumber(PlayerPrefs.GetInt("highScore"), new Vector2(Screen.width / 2 + 48, Screen.height / 2 + 15), "Medium");
+            numberTxt.DrawNumber(GameManager.score, new Vector2(Screen.width / 2 + 110, Screen.height / 2 + 15), "Medium", numberScale);
+            numberTxt.DrawNumber(PlayerPrefs.GetInt("highScore"), new Vector2(Screen.width / 2 + 110, Screen.height / 2 + 100), "Medium", numberScale);
 
             // Get Medal
             medalTexture = medalComp.getMedal(GameManager.score);
             // Draw Medal
             if (medalTexture != null) {
-                DrawTexture(new Vector2(Screen.width / 2 - 67, Screen.height / 2 - 18), medalTexture, 0.8f);
+//                Debug.Log ("ScoreBoard: " + scoreBoard.width + " " + scoreBoard.height);
+                DrawTexture(new Vector2(Screen.width / 2 - 180, 
+                                        Screen.height / 2 + 30),
+                            medalTexture, scale * 1.2f);
             }
 
         }

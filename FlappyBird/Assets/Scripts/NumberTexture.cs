@@ -26,12 +26,12 @@ public class NumberTexture : MonoBehaviour {
         }
     }
 
-    public void DrawNumber(int number, Vector2 pos, string size) {
+    public void DrawNumber(int number, Vector2 pos, string size, float scale) {
         SetSize (size);
         string numberStr = number.ToString ();
         for (int i = 0; i < numberStr.Length; i++) {
             int index = int.Parse(numberStr[i].ToString());
-            GUI.DrawTexture(new Rect(pos.x + i * numberWidth, pos.y, numberWidth, numberHeight), tmpSize[index]);
+            GUI.DrawTexture(new Rect(pos.x + i * (numberWidth + 20), pos.y, numberWidth * scale, numberHeight * scale), tmpSize[index]);
         }
     }
 

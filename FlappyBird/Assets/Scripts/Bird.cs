@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class Bird : MonoBehaviour {
-    private float upVel = 2.7f;
-    private float downVel = -7.2f;
+    private float upVel = 2.4f;
+    private float downVel = -3.6f;
     private float rotz = 0f;
     private Vector3 tmpPos;
     

@@ -584,8 +584,6 @@ MonoBehaviour:
   numberDrawer: {fileID: 0}
   numberTxt: {fileID: 0}
   tmpTexture: {fileID: 0}
-  gameScreenX: 0
-  gameScreenY: 0
 --- !u!1 &642591109
 GameObject:
   m_ObjectHideFlags: 0
