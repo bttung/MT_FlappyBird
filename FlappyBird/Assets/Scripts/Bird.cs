@@ -85,10 +85,12 @@ public class Bird : MonoBehaviour {
             GameManager.score++;
             Destroy (other.gameObject);
         } else if (other.gameObject.tag == "Pipe") {
+            StopAnimation();
             SendCollidePosition();
             SoundManager.SoundTrigger();
             GameManager.gameStop = true;
         } else if (other.gameObject.tag == "Ground") {
+            StopAnimation();
             SendCollidePosition();
             SoundManager.SoundTrigger();
             GameManager.gameOver = true;
@@ -118,5 +120,9 @@ public class Bird : MonoBehaviour {
             fadeComp.collidePosition = cameraComp.WorldToScreenPoint (transform.position);
         }
         collidedTime++;
+    }
+
+    void StopAnimation() {
+        Destroy(GetComponent<Animator>());
     }
 }
