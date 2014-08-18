@@ -6,11 +6,26 @@ public class Bird : MonoBehaviour {
     private float downVel = -3.6f;
     private float rotz = 0f;
     private Vector3 tmpPos;
+    private int collidedTime;
+
+    GameObject camera;
+    Camera cameraComp;
+    GameObject fadeManager;
+    FadeManager fadeComp;
     
     // Use this for initialization
     void Start () {
         rotz = 0;
         tmpPos = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
+        collidedTime = 0;
+
+        // Get Camera Component
+        camera = GameObject.Find ("MainCamera");
+        cameraComp = camera.GetComponent<Camera> ();
+
+        // Get FadeManager Component
+        fadeManager = GameObject.Find ("FadeManager");
+        fadeComp = fadeManager.GetComponent<FadeManager> ();
     }
     
     // Update is called once per frame
@@ -70,9 +85,11 @@ public class Bird : MonoBehaviour {
             GameManager.score++;
             Destroy (other.gameObject);
         } else if (other.gameObject.tag == "Pipe") {
+            SendCollidePosition();
             SoundManager.SoundTrigger();
             GameManager.gameStop = true;
         } else if (other.gameObject.tag == "Ground") {
+            SendCollidePosition();
             SoundManager.SoundTrigger();
             GameManager.gameOver = true;
             gameObject.collider2D.isTrigger = false;
@@ -82,6 +99,10 @@ public class Bird : MonoBehaviour {
             rigidbody2D.velocity = tempVel;
         }
 
+        if (GameManager.gameStop || GameManager.gameOver) {
+            fadeComp.MakeFlashLight(0.3f);
+        }
+
         if (GameManager.gameOver) {
             if (GameManager.score > PlayerPrefs.GetInt("highScore")) {
                 PlayerPrefs.SetInt("highScore", GameManager.score);
@@ -89,5 +110,13 @@ public class Bird : MonoBehaviour {
             }
             GameManager.gameOver = true;
         }
+    }
+
+    void SendCollidePosition() {
+        // Get the position when the bird collied first
+        if (collidedTime == 0) {
+            fadeComp.collidePosition = cameraComp.WorldToScreenPoint (transform.position);
+        }
+        collidedTime++;
     }
 }
