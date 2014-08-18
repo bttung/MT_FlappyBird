@@ -20,7 +20,10 @@ public class GameManager : MonoBehaviour {
         gameOver = false;
         score = 0;
         medal = false;
+    }
 
-//        gameOver = true;
+    public static void ReLoadGame() {
+        Init();
+        Application.LoadLevel(Application.loadedLevel);
     }
 }

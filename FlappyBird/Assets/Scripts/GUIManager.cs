@@ -9,44 +9,41 @@ public class GUIManager : MonoBehaviour {
     public Texture2D goldGold;
     public Texture2D play;
 
-    public GameObject numbTxt;
+    public GameObject backGround;
+    public GameObject numberDrawer;
     public NumberTexture numberTxt;
     public Texture2D tmpTexture;
 
+    public float gameScreenX;
+    public float gameScreenY;
+
+    private float scale;
+
     void Start() {
-        numbTxt = GameObject.Find ("Numbers");
-        numberTxt = numbTxt.GetComponent<NumberTexture> ();
+        numberDrawer = GameObject.Find ("Numbers");
+        numberTxt = numberDrawer.GetComponent<NumberTexture> ();
+        scale = 0.75f;
     }
     
     void OnGUI() {
-        float windowWidth = Screen.width / 1.2f;
-        float windowHeight = Screen.height / 3.5f;
-        float windowX = (Screen.width - windowWidth) / 2f;            // 54
-        float windowY = (Screen.height - windowHeight) / 2.1f;        // 124
-
         if (GameManager.gameStart && !GameManager.gameOver) {
-            numberTxt.DrawNumber(GameManager.score, new Vector2(315, 120), "Big");
+            numberTxt.DrawNumber(GameManager.score, new Vector2(Screen.width / 2 - 10, Screen.height / 2 - 150), "Big");
         }
 
         if (GameManager.gameOver) {
             // Draw Game Result Box
-            DrawTexture(new Vector2(255, 150), gameOver, 0.7f);
-            DrawTexture(new Vector2(235, 200), scoreBoard, 0.8f);
+            DrawTexture(new Vector2(Screen.width / 2 - gameOver.width * scale / 2, Screen.height / 2 - 100), gameOver, scale);
+            DrawTexture(new Vector2(Screen.width / 2 - scoreBoard.width * scale / 2, Screen.height / 2 - 50), scoreBoard, scale);
 
             // Draw Score
-            numberTxt.DrawNumber(GameManager.score, new Vector2(380, 230), "Medium");
-            numberTxt.DrawNumber(PlayerPrefs.GetInt("highScore"), new Vector2(380, 265), "Medium");
+            numberTxt.DrawNumber(GameManager.score, new Vector2(Screen.width / 2 + 48, Screen.height / 2 - 20), "Medium");
+            numberTxt.DrawNumber(PlayerPrefs.GetInt("highScore"), new Vector2(Screen.width / 2 + 48, Screen.height / 2 + 15), "Medium");
 
             // Draw Medal
             if (GameManager.medal) {
-                DrawTexture(new Vector2(257, 235), goldGold, 0.8f);
+                DrawTexture(new Vector2(Screen.width / 2 - 67, Screen.height / 2 - 18), goldGold, 0.8f);
             } else {
-                DrawTexture(new Vector2(257, 235), goldGray, 0.8f);
-            }
-
-            if (GUI.Button(new Rect(250, 330, play.width, play.height), play)) {
-                GameManager.Init();
-                Application.LoadLevel(Application.loadedLevel);
+                DrawTexture(new Vector2(Screen.width / 2 - 67, Screen.height / 2 - 18), goldGray, 0.8f);
             }
         }
     }
