@@ -23,32 +23,35 @@ public class GUIManager : MonoBehaviour {
         float windowHeight = Screen.height / 3.5f;
         float windowX = (Screen.width - windowWidth) / 2f;            // 54
         float windowY = (Screen.height - windowHeight) / 2.1f;        // 124
-        Debug.Log ("windowX " + windowX + " windowY " + windowY);
 
         if (GameManager.gameStart && !GameManager.gameOver) {
-            numberTxt.DrawNumber(GameManager.score, new Vector2(windowX, windowY), "Big");
+            numberTxt.DrawNumber(GameManager.score, new Vector2(315, 120), "Big");
         }
 
         if (GameManager.gameOver) {
             // Draw Game Result Box
-            GUI.DrawTexture(new Rect(windowX + 200, windowY / 2f, windowWidth / 3f, windowHeight / 3f), gameOver);
-            GUI.DrawTexture(new Rect(windowX + 200, windowY / 2f + 100f, windowWidth / 3f, windowHeight / 3f), scoreBoard);
+            DrawTexture(new Vector2(255, 150), gameOver, 0.7f);
+            DrawTexture(new Vector2(235, 200), scoreBoard, 0.8f);
 
-            //  Draw Score
-            numberTxt.DrawNumber(GameManager.score, new Vector2(windowX, windowY), "Big");
-            numberTxt.DrawNumber(PlayerPrefs.GetInt("highScore"), new Vector2(windowX, windowY + 30f), "Big");
+            // Draw Score
+            numberTxt.DrawNumber(GameManager.score, new Vector2(380, 230), "Medium");
+            numberTxt.DrawNumber(PlayerPrefs.GetInt("highScore"), new Vector2(380, 265), "Medium");
 
             // Draw Medal
             if (GameManager.medal) {
-                GUI.DrawTexture(new Rect(windowX + 200, windowY / 2f + 150f, windowWidth / 3f, windowHeight / 3f), goldGold);
+                DrawTexture(new Vector2(257, 235), goldGold, 0.8f);
             } else {
-                GUI.DrawTexture(new Rect(windowX + 200, windowY / 2f + 170f, windowWidth / 5f, windowHeight / 5f), goldGray);
+                DrawTexture(new Vector2(257, 235), goldGray, 0.8f);
             }
 
-            if (GUI.Button(new Rect(windowX + 200, windowY / 2f + 250f, windowWidth / 5f, windowHeight / 3f), play)) {
+            if (GUI.Button(new Rect(250, 330, play.width, play.height), play)) {
                 GameManager.Init();
                 Application.LoadLevel(Application.loadedLevel);
             }
         }
+    }
+
+    void DrawTexture(Vector2 pos, Texture2D texture, float scale) {
+        GUI.DrawTexture(new Rect(pos.x, pos.y, texture.width * scale, texture.height * scale), texture);
     }
 }

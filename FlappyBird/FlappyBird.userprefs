@@ -1,14 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Bird.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SoundManager.cs">
     <Files>
-      <File FileName="../../flappy_bird/Assets/Scripts/bird.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Bird.cs" Line="16" Column="38" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="24" Column="1" />
-      <File FileName="../../flappy_bird/Assets/Scripts/move.cs" Line="13" Column="27" />
-      <File FileName="../../flappy_bird/Assets/Scripts/GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Move.cs" Line="6" Column="35" />
-      <File FileName="Assets/Scripts/GUIManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GUIManager.cs" Line="28" Column="68" />
+      <File FileName="Assets/Scripts/Bird.cs" Line="31" Column="10" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="24" Column="13" />
+      <File FileName="Assets/Scripts/Move.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GUIManager.cs" Line="58" Column="1" />
+      <File FileName="Assets/Scripts/TapToStart.cs" Line="25" Column="34" />
+      <File FileName="Assets/Scripts/NumberTexture.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SoundManager.cs" Line="23" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

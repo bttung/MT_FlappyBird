@@ -21,6 +21,5 @@ public class SoundManager : MonoBehaviour {
 
     public static void SoundTrigger() {
         playTime++;
-        Debug.Log ("playedTime: " + playTime);
     }
 }

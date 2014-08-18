@@ -24,9 +24,12 @@ public class Bird : MonoBehaviour {
             rigidbody2D.gravityScale = 0.5f;
         }
 
-        if ((Input.GetKeyDown (KeyCode.Space) || Input.GetMouseButtonDown(0)) &&
-                                            !GameManager.gameOver&&GameManager.gameStart) {
-            rigidbody2D.velocity = new Vector2 (0f, upForce);
+        // Check if the bird is able to receive user input
+        if (InputManager.isInputReceivable ()) {
+            // Check if user inputed valid key
+            if (InputManager.isInputed()) {
+                rigidbody2D.velocity = new Vector2 (0f, upForce);
+            }
         }
 
         if (!GameManager.gameStart) {
@@ -69,5 +72,4 @@ public class Bird : MonoBehaviour {
             GameManager.gameOver = true;
         }
     }
-
 }

@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour {
         gameOver = false;
         score = 0;
         medal = false;
-    }
 
+//        gameOver = true;
+    }
 }
