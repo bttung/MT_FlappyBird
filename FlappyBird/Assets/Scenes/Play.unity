@@ -1198,6 +1198,7 @@ GameObject:
   - 61: {fileID: 1318754012}
   - 50: {fileID: 1318754011}
   - 114: {fileID: 1318754010}
+  - 95: {fileID: 1318754013}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -1276,6 +1277,20 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_Size: {x: .340000004, y: .239999995}
   m_Center: {x: 0, y: 0}
+--- !u!95 &1318754013
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1318754007}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cf851310149c840e38c0126b87de8918, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
 --- !u!1 &1319667485
 GameObject:
   m_ObjectHideFlags: 0
