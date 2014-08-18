@@ -645,7 +645,7 @@ MonoBehaviour:
   goldGold: {fileID: 2800000, guid: e330d26c4c7c94b099124075a6ce571c, type: 3}
   play: {fileID: 2800000, guid: 93158e7cf8b9d423086c8ffe6e004241, type: 3}
   backGround: {fileID: 0}
-  numbTxt: {fileID: 0}
+  numberDrawer: {fileID: 0}
   numberTxt: {fileID: 0}
   tmpTexture: {fileID: 0}
   gameScreenX: 0
@@ -710,7 +710,6 @@ GameObject:
   - 4: {fileID: 668686423}
   - 212: {fileID: 668686422}
   - 50: {fileID: 668686421}
-  - 114: {fileID: 668686420}
   - 60: {fileID: 668686419}
   m_Layer: 0
   m_Name: up
@@ -736,18 +735,6 @@ PolygonCollider2D:
       - {x: .25999999, y: -1.5999999}
       - {x: .25999999, y: -.899999976}
       - {x: .25999999, y: 1.5999999}
---- !u!114 &668686420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 8d86e4d6fc46944a692caa1258af16fb,
-    type: 2}
-  m_PrefabInternal: {fileID: 840546312}
-  m_GameObject: {fileID: 668686418}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb997fd3dca842eda6e6a25af324d5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &668686421
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -1085,7 +1072,6 @@ GameObject:
   - 4: {fileID: 1258862002}
   - 212: {fileID: 1258862006}
   - 50: {fileID: 1258862005}
-  - 114: {fileID: 1258862004}
   - 60: {fileID: 1258862003}
   m_Layer: 0
   m_Name: down
@@ -1122,18 +1108,6 @@ PolygonCollider2D:
       - {x: -.25999999, y: -1.5999999}
       - {x: .25999999, y: -1.5999999}
       - {x: .25999999, y: 1.5999999}
---- !u!114 &1258862004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: 8d86e4d6fc46944a692caa1258af16fb,
-    type: 2}
-  m_PrefabInternal: {fileID: 840546312}
-  m_GameObject: {fileID: 1258862001}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb997fd3dca842eda6e6a25af324d5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &1258862005
 Rigidbody2D:
   m_ObjectHideFlags: 0

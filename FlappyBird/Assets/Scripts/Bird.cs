@@ -2,18 +2,15 @@
 using System.Collections;
 
 public class Bird : MonoBehaviour {
-    private float upForce = 2.7f;
-    private float rotz = 0f;
-    private float some = 5f;
+    private float upVel = 2.7f;
     private float downVel = -7.2f;
-    private Vector3 birdPos;
+    private float rotz = 0f;
     private Vector3 tmpPos;
     
     // Use this for initialization
     void Start () {
         rotz = 0;
-        birdPos = transform.position;
-        tmpPos = new Vector3 (birdPos.x, birdPos.y, birdPos.z);
+        tmpPos = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
     }
     
     // Update is called once per frame
@@ -28,8 +25,21 @@ public class Bird : MonoBehaviour {
         if (InputManager.isInputReceivable ()) {
             // Check if user inputed valid key
             if (InputManager.isInputed()) {
-                rigidbody2D.velocity = new Vector2 (0f, upForce);
+                rigidbody2D.velocity = new Vector2 (0f, upVel);
             }
+        }
+
+        if (GameManager.gameStart && !GameManager.gameOver) {
+            Quaternion rot;
+            if (rigidbody2D.velocity.y > 0) {
+                // Flying up
+                rotz = Mathf.Lerp (rotz, 30, Time.deltaTime * 5);
+            } else {
+                // Flying down
+                rotz = Mathf.Lerp (rotz, -90, Time.deltaTime);
+            }
+            rot = Quaternion.Euler (0, 0, rotz);
+            transform.rotation = rot;
         }
 
         if (!GameManager.gameStart) {
@@ -42,11 +52,21 @@ public class Bird : MonoBehaviour {
             transform.position = tmpPos;
         }
 
+        // Limit the velocity of fly up
+        if (rigidbody2D.velocity.y > upVel) { 
+            Vector3 tempVel = new Vector3 (0f, upVel, 0f);
+            rigidbody2D.velocity = tempVel;
+        }
+
         // Limit the velocity of fall down
         if (rigidbody2D.velocity.y < downVel) {
             Vector3 tempVel = new Vector3 (0f, downVel, 0f);
             rigidbody2D.velocity = tempVel;
         }
+
+//        if (transform.position.y > 4) {
+//            transform.Translate(0, Time.deltaTime * downVel, 0);
+//        }
 
     }
 
