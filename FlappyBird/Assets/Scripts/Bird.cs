@@ -8,13 +8,12 @@ public class Bird : MonoBehaviour {
     private float downVel = -7.2f;
     private Vector3 birdPos;
     private Vector3 tmpPos;
-    public AudioClip hit;
     
     // Use this for initialization
     void Start () {
         rotz = 0;
         birdPos = transform.position;
-        tmpPos = new Vector3(transform.position.x, 0.0f,transform.position.z);
+        tmpPos = new Vector3 (birdPos.x, birdPos.y, birdPos.z);
     }
     
     // Update is called once per frame
@@ -25,12 +24,15 @@ public class Bird : MonoBehaviour {
             rigidbody2D.gravityScale = 0.5f;
         }
 
-//        var pos = new Vector3 (birdPos.x,transform.position.y, transform.position.z);
-//        transform.position = pos;
-
-        if ((Input.GetKeyDown (KeyCode.Space)||Input.GetMouseButtonDown(0)) &&
+        if ((Input.GetKeyDown (KeyCode.Space) || Input.GetMouseButtonDown(0)) &&
                                             !GameManager.gameOver&&GameManager.gameStart) {
             rigidbody2D.velocity = new Vector2 (0f, upForce);
+        }
+
+        if (!GameManager.gameStart) {
+            rotz = Mathf.Lerp (rotz, 25f * Mathf.Sin(Time.deltaTime), Time.deltaTime * 6);
+            var rot = Quaternion.Euler (0, 0, rotz);
+            transform.rotation = rot;
         }
 
         if (!GameManager.gameStart || GameManager.gameOver) {
@@ -49,9 +51,17 @@ public class Bird : MonoBehaviour {
         if (other.gameObject.tag == "ScoreArea") {
             GameManager.score++;
             Destroy (other.gameObject);
-        } else if (other.gameObject.tag == "Pipe" || other.gameObject.tag == "Ground") {
+        } else if (other.gameObject.tag == "Pipe") {
+            SoundManager.SoundTrigger();
+            GameManager.gameStop = true;
+        } else if (other.gameObject.tag == "Ground") {
+            SoundManager.SoundTrigger();
+            GameManager.gameOver = true;
             gameObject.collider2D.isTrigger = false;
-            AudioSource.PlayClipAtPoint(hit, Camera.main.transform.position);
+            tmpPos = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
+        }
+
+        if (GameManager.gameOver) {
             if (GameManager.score > PlayerPrefs.GetInt("highScore")) {
                 PlayerPrefs.SetInt("highScore", GameManager.score);
                 GameManager.medal = true;
@@ -59,4 +69,5 @@ public class Bird : MonoBehaviour {
             GameManager.gameOver = true;
         }
     }
+
 }

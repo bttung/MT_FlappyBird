@@ -4,6 +4,7 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
     public static bool gameStart;
+    public static bool gameStop;
     public static bool gameOver;
     public static int score;
     public static bool medal;
@@ -15,8 +16,10 @@ public class GameManager : MonoBehaviour {
 
     public static void Init() {
         gameStart = false;
+        gameStop = false;
         gameOver = false;
         score = 0;
         medal = false;
     }
+
 }
