@@ -13,16 +13,19 @@ public class GUIManager : MonoBehaviour {
     public GameObject numberDrawer;
     public NumberTexture numberTxt;
     public Texture2D tmpTexture;
-
-    public float gameScreenX;
-    public float gameScreenY;
-
     private float scale;
+
+    private GameObject medalManager;
+    private MedalManager medalComp;
+    private Texture2D medalTexture;
 
     void Start() {
         numberDrawer = GameObject.Find ("Numbers");
         numberTxt = numberDrawer.GetComponent<NumberTexture> ();
         scale = 0.75f;
+
+        medalManager = GameObject.Find ("Medal");
+        medalComp = medalManager.GetComponent<MedalManager> ();
     }
     
     void OnGUI() {
@@ -39,12 +42,13 @@ public class GUIManager : MonoBehaviour {
             numberTxt.DrawNumber(GameManager.score, new Vector2(Screen.width / 2 + 48, Screen.height / 2 - 20), "Medium");
             numberTxt.DrawNumber(PlayerPrefs.GetInt("highScore"), new Vector2(Screen.width / 2 + 48, Screen.height / 2 + 15), "Medium");
 
+            // Get Medal
+            medalTexture = medalComp.getMedal(GameManager.score);
             // Draw Medal
-            if (GameManager.medal) {
-                DrawTexture(new Vector2(Screen.width / 2 - 67, Screen.height / 2 - 18), goldGold, 0.8f);
-            } else {
-                DrawTexture(new Vector2(Screen.width / 2 - 67, Screen.height / 2 - 18), goldGray, 0.8f);
+            if (medalTexture != null) {
+                DrawTexture(new Vector2(Screen.width / 2 - 67, Screen.height / 2 - 18), medalTexture, 0.8f);
             }
+
         }
     }
 

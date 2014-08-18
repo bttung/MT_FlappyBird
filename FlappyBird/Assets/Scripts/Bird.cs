@@ -63,11 +63,6 @@ public class Bird : MonoBehaviour {
             Vector3 tempVel = new Vector3 (0f, downVel, 0f);
             rigidbody2D.velocity = tempVel;
         }
-
-//        if (transform.position.y > 4) {
-//            transform.Translate(0, Time.deltaTime * downVel, 0);
-//        }
-
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -82,6 +77,9 @@ public class Bird : MonoBehaviour {
             GameManager.gameOver = true;
             gameObject.collider2D.isTrigger = false;
             tmpPos = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
+        } else if (other.gameObject.tag == "Roof") {
+            Vector3 tempVel = new Vector3 (0f, downVel / 5, 0f);
+            rigidbody2D.velocity = tempVel;
         }
 
         if (GameManager.gameOver) {
